@@ -1,0 +1,88 @@
+data = """id,text,label
+1,I love this product it works perfectly,positive
+2,This is the worst service I have ever experienced,negative
+3,The delivery was okay nothing special,neutral
+4,Absolutely amazing experience will buy again,positive
+5,I am very disappointed with the quality,negative
+6,Customer support was helpful and polite,positive
+7,The item arrived late but works fine,neutral
+8,Total waste of money do not recommend,negative
+9,Great value for the price,positive
+10,Not bad but could be better,neutral
+11,I am extremely happy with my purchase,positive
+12,The product stopped working after one week,negative
+13,Average performance nothing impressive,neutral
+14,Fast shipping and excellent packaging,positive
+15,Poor build quality and terrible design,negative
+"""
+import pandas as pd
+from io import StringIO
+df = pd.read_csv(StringIO(data))
+print(df.head())
+
+   id                                               text     label
+0   1             I love this product it works perfectly  positive
+1   2  This is the worst service I have ever experienced  negative
+2   3              The delivery was okay nothing special   neutral
+3   4       Absolutely amazing experience will buy again  positive
+4   5            I am very disappointed with the quality  negative
+
+
+
+
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load dataset - Removed line: df = pd.read_csv("sentiment_dataset.csv")
+# Using the existing 'df' DataFrame from previous cell.
+
+# Show first few rows
+print(df.head())
+
+# ----------------------------
+# 1. Sentiment Distribution
+# ----------------------------
+sentiment_counts = df['label'].value_counts()
+
+plt.figure()
+sentiment_counts.plot(kind='pie')
+plt.title("Sentiment Distribution")
+plt.xlabel("Sentiment")
+plt.ylabel("Count")
+plt.show()
+
+# ----------------------------
+# 2. Text Length Distribution
+# ----------------------------
+df['text_length'] = df['text'].apply(len)
+
+plt.figure()
+plt.hist(df['text_length'], bins=10)
+plt.title("Text Length Distribution")
+plt.xlabel("Number of Characters")
+plt.ylabel("Frequency")
+plt.show()
+
+
+    id                                               text     label  \
+0   1             I love this product it works perfectly  positive   
+1   2  This is the worst service I have ever experienced  negative   
+2   3              The delivery was okay nothing special   neutral   
+3   4       Absolutely amazing experience will buy again  positive   
+4   5            I am very disappointed with the quality  negative   
+
+   text_length  
+0           38  
+1           49  
+2           37  
+3           44  
+4           39  
+
+
+
+
+
+
+
+
